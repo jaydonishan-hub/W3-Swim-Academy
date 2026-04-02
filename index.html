@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W3 Swim Academy | Indoor Warm Pool in PJ</title>
+    <style>
+        /* --- Brand Colors & Variables --- */
+        :root {
+            --primary-dark: #0f172a; /* Deep Navy */
+            --primary-blue: #1e3a8a; /* Bright Navy */
+            --accent-warm: #f97316; /* Warm Orange/Coral */
+            --accent-hover: #ea580c;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--accent-warm);
+            color: var(--bg-white);
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--bg-white);
+            border: 2px solid var(--bg-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-white);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background-color: var(--bg-white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-blue);
+        }
+
+        .logo-w3 {
+            background: var(--accent-warm);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--text-main);
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-warm);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.7)), url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            color: var(--bg-white);
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(249, 115, 22, 0.2);
+            color: var(--accent-warm);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(249, 115, 22, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* --- Stats Bar --- */
+        .stats-bar {
+            background-color: var(--primary-blue);
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            padding: 3rem 5%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item {
+            border-right: 1px solid rgba(255,255,255,0.2);
+            padding: 1rem;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-warm);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Services/Programs Section --- */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-img {
+            height: 220px;
+            background-color: #cbd5e1;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* --- Why Choose Us --- */
+        .features-wrapper {
+            background-color: var(--bg-white);
+            padding: 6rem 5%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(30, 58, 138, 0.1);
+            color: var(--primary-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .feature-text h4 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text p {
+            color: var(--text-muted);
+        }
+
+        .features-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .features-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- CTA Banner --- */
+        .cta-banner {
+            background-color: var(--accent-warm);
+            padding: 4rem 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* --- Google Maps Section --- */
+        .map-section {
+            padding: 5rem 5%;
+            background-color: var(--bg-light);
+        }
+        
+        .map-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .map-header h2 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .map-header p {
+            color: var(--text-muted);
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 450px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-white);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--bg-white);
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about .logo {
+            color: var(--bg-white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-about .logo-w3 {
+            background: var(--accent-warm);
+        }
+
+        .footer-about p {
+            color: #94a3b8;
+            max-width: 350px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--bg-white);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 1rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col a {
+            color: #94a3b8;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-warm);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* --- Floating WhatsApp --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 65px;
+            height: 65px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 2px 4px 15px rgba(0,0,0,0.25);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 2px 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-buttons { flex-direction: column; }
+            .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 2rem 1rem; }
+            .stat-item:last-child { border-bottom: none; }
+            .map-container { height: 350px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-w3">W3</div>
+            <span>Swim Academy</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#programs">Our Programs</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+        <a href="https://wa.me/60183702171" target="_blank" class="btn">
+            <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Book a Trial
+        </a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">📍 Sunway Damansara, PJ</div>
+            <h1>Learn to Swim<br>The W3 Way.</h1>
+            <p>Experience top-notch professional swimming lessons at our state-of-the-art 25m indoor warm pool. Rain or shine, we swim consistently.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/60183702171" target="_blank" class="btn" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Start Your Journey</a>
+                <a href="#programs" class="btn btn-outline" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Explore Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Students Taught</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Years Coaching Experience</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">>20</div>
+            <div class="stat-label">Expert Swim Teachers</div>
+        </div>
+    </div>
+
+    <section id="about" class="features-wrapper">
+        <div class="features-grid">
+            <div class="features-content">
+                <h2 style="font-size: 2.8rem; color: var(--primary-dark); margin-bottom: 1rem; line-height: 1.2;">Professional Swimming Teaching</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem;">With a team of experienced coaches, we have the ability to lead students with effective learning and most importantly, FUN. Join the leading swim academy in PJ.</p>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🌡️</div>
+                    <div class="feature-text">
+                        <h4>25m Indoor Warm Pool</h4>
+                        <p>With our indoor heated pool, we run classes consistently. Never worry about the weather, sunburn, or freezing water again.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🏅</div>
+                    <div class="feature-text">
+                        <h4>Expert Instructors</h4>
+                        <p>Our swimming teachers are well-trained and certified. Our Head Coach brings over 20 years of dedicated teaching and coaching experience to the pool.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <h4>State-of-the-Art Facility</h4>
+                        <p>Experience the best swim learning environment in Damansara, tailored for maximum comfort and safety.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-image">
+                <img src="https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Indoor Warm Pool Facility">
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="section">
+        <div class="section-header">
+            <h2>Our Specialized Programs</h2>
+            <p>Whether you're just dipping your toes in or preparing for a competition, W3 Swim Academy has the perfect class for you.</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="service-content">
+                    <h3>Learn to Swim</h3>
+                    <p>Build water confidence and learn fundamental survival skills in a safe, fun, and engaging environment. Perfect for beginners of all ages.</p>
+                    <a href="https://wa.me/60183702171" target="_blank" class="btn" style="width: 100%; background-color: var(--primary-blue);">Inquire Now</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1519315901367-f34f91d575fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="service-content">
+                    <h3>Adult Swimming</h3>
+                    <p>It’s never too late to learn. Overcome water phobia, master breathing techniques, or refine your strokes with our patient adult instructors.</p>
+                    <a href="https://wa.me/60183702171" target="_blank" class="btn" style="width: 100%; background-color: var(--primary-blue);">Inquire Now</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1560090995-01632a28895b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="service-content">
+                    <h3>Pre-Competitive</h3>
+                    <p>Take your skills to the next level. Focus on advanced stroke mechanics, endurance, and speed to prepare for swim team success.</p>
+                    <a href="https://wa.me/60183702171" target="_blank" class="btn" style="width: 100%; background-color: var(--primary-blue);">Inquire Now</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1600965962102-9d260a71890d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="service-content">
+                    <h3>Special Needs Swimming</h3>
+                    <p>Specialized aquatic therapy and instruction tailored to accommodate and empower individuals with special needs in a safe setting.</p>
+                    <a href="https://wa.me/60183702171" target="_blank" class="btn" style="width: 100%; background-color: var(--primary-blue);">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <h2>Ready to Dive In?</h2>
+        <p>Get in touch with W3 Swim Academy today to book a session or inquire about our flexible training hours.</p>
+        <a href="https://wa.me/60183702171" target="_blank" class="btn" style="background-color: var(--bg-white); color: var(--accent-warm); font-size: 1.1rem; padding: 1rem 3rem;">
+            Book Your First Class
+        </a>
+    </section>
+
+    <section id="location" class="map-section">
+        <div class="map-header">
+            <h2>Find Us in PJ</h2>
+            <p>We are conveniently located in Sunway Damansara, Petaling Jaya.</p>
+        </div>
+        <div class="map-container">
+            <iframe 
+                src="https://maps.google.com/maps?q=W3%20Swim%20Academy,%2030,%20Jalan%20PJU%203/47,%20Sunway%20Damansara,%2047810%20Petaling%20Jaya,%20Selangor&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="#" class="logo">
+                    <div class="logo-w3">W3</div>
+                    <span style="color: white;">Swim Academy</span>
+                </a>
+                <p>Located at Sunway Damansara, offering state-of-the-art facilities and experienced coaches to train swimmers of all levels. Learn to swim the W3 way.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#programs">Services</a></li>
+                    <li><a href="#location">Location</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li>📞 <a href="https://wa.me/60183702171" target="_blank">018-3702171</a></li>
+                    <li>✉️ <a href="mailto:w3swimacademy@gmail.com">w3swimacademy@gmail.com</a></li>
+                    <li>📍 30, Jalan PJU 3/47, Sunway Damansara,<br>47810 Petaling Jaya, Selangor</li>
+                    <li>🚗 Waze: W3 Swim Academy</li>
+                    <li>⏱️ Flexible training hours</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 W3 Swim Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/60183702171" target="_blank" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+</body>
+</html>
